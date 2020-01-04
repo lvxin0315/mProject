@@ -14,6 +14,10 @@ func main() {
 	creeperApiEngine.LoadHTMLGlob("./tpl/*")
 
 	creeperApiEngine.Any("/demo", controller.Demo)
+	creeperApiEngine.GET("/getDemoData", controller.GetDemoData)
+
+	creeperApiEngine.Any("/upload", controller.UploadPage)
+	creeperApiEngine.POST("/uploadyingshoukuanmingxi", controller.UploadYingShouKuanMingXi)
 
 	_ = creeperApiEngine.Run(":8083")
 }

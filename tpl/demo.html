@@ -1,3 +1,35 @@
 {{template "header" .}}
-    <div>middle</div>
+<form method="post" action="#">
+	<textarea id="source" style="display:none" name="myField" ></textarea>
+    <button type="button">保存</button>
+</form>
+<script>
+    $(document).ready(function(){
+
+        let options = {};
+
+        $.ajax({
+            url : '/getDemoData',
+            type : 'get',
+            async: false,//使用同步的方式,true为异步方式
+            data : {},
+            success : function(res){
+                options.myHead = res.ths;
+                options.myData = res.trs;
+            }
+        });
+
+        let myTable = $('#source').editTable({
+            headerCols: options.myHead,
+        });
+
+        myTable.loadJsonData(options.myData);
+
+        $().on("click", function(){
+            myTable.getData()
+        })
+    });
+
+
+</script>
 {{template "footer" }}

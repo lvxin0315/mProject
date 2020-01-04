@@ -19,6 +19,12 @@ replace (
 )
 
 require (
+	github.com/Chain-Zhang/pinyin v0.1.3
+	github.com/Unknwon/goconfig v0.0.0-20191126170842-860a72fb44fd
 	github.com/gin-gonic/gin v1.5.0
+	github.com/jinzhu/gorm v1.9.11
+	github.com/kr/pretty v0.2.0 // indirect
 	github.com/sirupsen/logrus v1.4.2
+	github.com/smartystreets/goconvey v1.6.4 // indirect
+	github.com/tealeg/xlsx v1.0.5
 )
