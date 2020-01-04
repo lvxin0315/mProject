@@ -6,7 +6,7 @@ import "github.com/jinzhu/gorm"
 type YingShouKuanMingXi struct {
 	gorm.Model
 	QuYu                     string `json:"qu_yu"`
-	HangYeXian               string `json:"hang_ye_xian"`
+	HangYeXian               string `gorm:"column:xing_ye_xian" json:"xing_ye_xian"`
 	QianDingNianFen          string `json:"qian_ding_nian_fen"`
 	HeTongBianHao            string `json:"he_tong_bian_hao"`
 	XiangMuMingCheng         string `json:"xiang_mu_ming_cheng"`

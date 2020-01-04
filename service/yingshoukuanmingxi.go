@@ -19,7 +19,10 @@ func YinShouKuan(jsonContent map[string]interface{}) error {
 			return err
 		}
 		ik[i] = k
+		//fmt.Println(fmt.Sprintf("{Title: \"%s\", Field: \"%s\",},\r\n", z, k))
 	}
+
+	logrus.Info(ik)
 
 	var YinShouKuanData []map[string]string
 
@@ -42,6 +45,8 @@ func YinShouKuan(jsonContent map[string]interface{}) error {
 
 	var YinShouKuanList []*model.YingShouKuanMingXi
 
+	logrus.Println(string(YinShouKuanByte))
+
 	err = json.Unmarshal(YinShouKuanByte, &YinShouKuanList)
 	if err != nil {
 		logrus.Error(err)
@@ -62,4 +67,19 @@ func YinShouKuan(jsonContent map[string]interface{}) error {
 	}
 
 	return nil
+}
+
+func GetAllDataMap() ([]map[string]string, error) {
+	db, err := db_conn.GetGormDB()
+	if err != nil {
+		logrus.Error(err)
+		return nil, err
+	}
+	var dataList []*model.YingShouKuanMingXi
+	db.Model(model.YingShouKuanMingXi{}).Find(&dataList)
+	//使用json转map
+	dataByte, _ := json.Marshal(dataList)
+	var dataMap []map[string]string
+	_ = json.Unmarshal(dataByte, &dataMap)
+	return dataMap, nil
 }
