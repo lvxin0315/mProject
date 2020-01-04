@@ -10,6 +10,12 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+	db.DropTableIfExists(
+		//model.YingShouKuanMingXi{},
+		model.ChanZhiDaCheng{},
+	)
 	db.CreateTable(
-		model.YingShouKuanMingXi{})
+		//model.YingShouKuanMingXi{},
+		model.ChanZhiDaCheng{},
+	)
 }
