@@ -78,16 +78,36 @@ func ChanZhiDaCheng(jsonContent map[string]interface{}) error {
 }
 
 func GetAllChanZhiDaChengDataMap() ([]map[string]string, error) {
-	db, err := db_conn.GetGormDB()
+	dataList, err := GetAllChanZhiDaChengData()
 	if err != nil {
-		logrus.Error(err)
 		return nil, err
 	}
-	var dataList []*model.ChanZhiDaCheng
-	db.Model(model.ChanZhiDaCheng{}).Find(&dataList)
 	//使用json转map
 	dataByte, _ := json.Marshal(dataList)
 	var dataMap []map[string]string
 	_ = json.Unmarshal(dataByte, &dataMap)
 	return dataMap, nil
+}
+
+func GetAllChanZhiDaChengData() ([]*model.ChanZhiDaCheng, error) {
+	var dataList []*model.ChanZhiDaCheng
+	db, err := db_conn.GetGormDB()
+	if err != nil {
+		logrus.Error(err)
+		return nil, err
+	}
+	db.Model(model.ChanZhiDaCheng{}).Find(&dataList)
+	return dataList, nil
+}
+
+func GetAllChanZhiDaChengDataByQuYu() (map[string][]*model.ChanZhiDaCheng, error) {
+	dataList, err := GetAllChanZhiDaChengData()
+	if err != nil {
+		return nil, err
+	}
+	resultDataList := make(map[string][]*model.ChanZhiDaCheng)
+	for _, item := range dataList {
+		resultDataList[item.QuYu] = append(resultDataList[item.QuYu], item)
+	}
+	return resultDataList, nil
 }

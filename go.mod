@@ -19,6 +19,7 @@ replace (
 )
 
 require (
+	github.com/360EntSecGroup-Skylar/excelize/v2 v2.0.2
 	github.com/Chain-Zhang/pinyin v0.1.3
 	github.com/Unknwon/goconfig v0.0.0-20191126170842-860a72fb44fd
 	github.com/gin-gonic/gin v1.5.0

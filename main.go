@@ -20,5 +20,7 @@ func main() {
 	creeperApiEngine.POST("/uploadyingshoukuanmingxi", controller.UploadYingShouKuanMingXi)
 	creeperApiEngine.POST("/uploadchanzhidacheng", controller.UploadChanZhiDaCheng)
 
+	creeperApiEngine.Any("download_one", controller.DownloadOne)
+
 	_ = creeperApiEngine.Run(":8083")
 }
